@@ -8,37 +8,27 @@
     "demo": {
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "configurations": {
             "development": {
-              "buildOptimizer": false,
               "extractLicenses": false,
               "namedChunks": true,
               "optimization": false,
-              "sourceMap": true,
-              "vendorChunk": true
+              "sourceMap": true
             },
             "production": {
               "aot": true,
-              "buildOptimizer": true,
               "extractLicenses": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "namedChunks": false,
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "vendorChunk": false
+              "sourceMap": false
             }
           },
           "options": {
             "assets": [],
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "outputPath": "dist/demo",
             "scripts": [],
             "styles": ["src/global_styles.css"],
@@ -62,10 +52,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "demo:build:development"
+              "buildTarget": "demo:build:development"
             },
             "production": {
-              "browserTarget": "demo:build:production"
+              "buildTarget": "demo:build:production"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +66,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "karmaConfig": "src/karma.conf.js",
             "main": "src/test.ts",
-            "polyfills": [],
+            "polyfills": ["zone.js", ".zone.js/testing"],
             "scripts": [],
             "styles": ["styles.css"],
             "tsConfig": "src/tsconfig.spec.json"
